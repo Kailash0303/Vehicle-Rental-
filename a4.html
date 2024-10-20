@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment</title>
+    <!-- <link rel="stylesheet" href="page4.css"> Link the CSS -->
+</head>
+<body>
+
+    <div class="container">
+        <div class="header">
+            <img src="/images/dr.png" alt="Drivee Logo"> <!-- Replace with your image path -->
+        </div>
+
+        <h2>Payment</h2>
+
+        <form onsubmit="return openPaymentPage(event);">
+            <div class="form-group">
+                <label for="amount">Amount:</label>
+                <input type="number" id="amount" name="amount" placeholder="₹amount" readonly value=" amount"> <!-- Added default value for testing -->
+                <button type="button" class="view-details-btn" onclick="openDetailsModal()">View Details</button>
+            </div>
+
+            <!-- Payment options layout -->
+            <div class="payment-options">
+                <div class="payment-option">
+                    <input type="radio" id="credit-card" name="payment-method" value="credit-card" required>
+                    <img src="/images/card.jpg" alt="Credit Card Logo">
+                    <label for="credit-card">Credit Card</label>
+                </div>
+
+                <div class="payment-option">
+                    <input type="radio" id="cash" name="payment-method" value="cash">
+                    <img src="/images/cash.jpg" alt="Cash Logo">
+                    <label for="cash">Cash</label>
+                </div>
+            </div>
+
+            <div class="payment-options">
+                <div class="payment-option">
+                    <input type="radio" id="upi" name="payment-method" value="upi">
+                    <img src="/images/upi.png" alt="UPI Logo">
+                    <label for="upi">UPI</label>
+                </div>
+
+                <div class="payment-option">
+                    <input type="radio" id="net-banking" name="payment-method" value="net-banking">
+                    <img src="/images/net.png" alt="Net Banking Logo">
+                    <label for="net-banking">Net Banking</label>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <button type="submit" class="payment-btn">Proceed to Pay</button>
+            </div>
+        </form>
+
+        <button class="back-btn">BACK</button>
+    </div>
+
+    <!-- Modal for View Details -->
+    <div id="detailsModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeDetailsModal()">&times;</span>
+            <h2>Details</h2>
+            <div class="detail-item">
+                <label>Amount:</label>
+                <span id="detail-amount">₹0</span>
+            </div>
+            <div class="detail-item">
+                <label>SGST:</label>
+                <span id="detail-sgst">₹0</span>
+            </div>
+            <div class="detail-item">
+                <label>CGST:</label>
+                <span id="detail-cgst">₹0</span>
+            </div>
+            <div class="detail-item">
+                <label>Other Charges:</label>
+                <span id="detail-other-charges">₹0</span>
+            </div>
+            <div class="detail-item">
+                <label>Coupon Discount:</label>
+                <span id="detail-coupon-discount">₹0</span>
+            </div>
+            <div class="detail-item">
+                <label>Total:</label>
+                <span id="detail-total">₹0</span>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Function to open the payment page in the same tab
+        function openPaymentPage(event) {
+            event.preventDefault(); // Prevent form submission
+            window.location.href = 'a5.html'; // Open page5.html in the same tab
+        }
+
+        // Function to open the details modal
+        function openDetailsModal() {
+            // Values for demo (these can be dynamic)
+            const amount = parseFloat(document.getElementById('amount').value) || 0;
+            const sgst = 1000; // Replace with actual value
+            const cgst = 1000; // Replace with actual value
+            const otherCharges = 250; // Replace with actual value
+            const couponDiscount = 125; // Replace with actual value
+
+            // Populate details
+            document.getElementById('detail-amount').innerText = "₹" + amount.toFixed(2);
+            document.getElementById('detail-sgst').innerText = "₹" + sgst.toFixed(2);
+            document.getElementById('detail-cgst').innerText = "₹" + cgst.toFixed(2);
+            document.getElementById('detail-other-charges').innerText = "₹" + otherCharges.toFixed(2);
+            document.getElementById('detail-coupon-discount').innerText = "₹" + couponDiscount.toFixed(2);
+
+            // Calculate total
+            const total = amount + sgst + cgst + otherCharges - couponDiscount;
+            document.getElementById('detail-total').innerText = "₹" + total.toFixed(2); // Update the total field
+
+            document.getElementById('detailsModal').style.display = "block"; // Show the modal
+        }
+
+        // Function to close the details modal
+        function closeDetailsModal() {
+            document.getElementById('detailsModal').style.display = "none"; // Hide the modal
+        }
+    </script>
+
+    <style>
+        /* Modal Styles */
+        .modal {
+            display: none; /* Hidden by default */
+            position: fixed; /* Stay in place */
+            z-index: 1; /* Sit on top */
+            left: 0;
+            top: 0;
+            width: 100%; /* Full width */
+            height: 100%; /* Full height */
+            overflow: auto; /* Enable scroll if needed */
+            background-color: rgb(0,0,0); /* Fallback color */
+            background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+        }
+
+        .modal-content {
+            background-color: #fefefe;
+            margin: 10% auto; /* 10% from the top and centered */
+            padding: 30px;
+            border: 1px solid #888;
+            width: 900px; /* Increased width for the modal */
+            height: 350px; /* Increased height for the modal */
+            border-radius: 15px; /* Rounded edges */
+        }
+
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .detail-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+
+        .detail-item label {
+            font-weight: bold;
+        }
+        
+        /* Additional CSS */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            width: 92.2%;
+            border: 2px solid black;
+            padding: 54px;
+            background-color: white;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            position: relative; /* Position for the back button */
+        }
+
+        .header img {
+            width: 350px; /* Adjust size of Drivee logo */
+            margin-bottom: -75px;
+            margin-top: -100px;
+            margin-left: -1135px;
+        }
+
+        h2 {
+            color: #83a7fb;
+            font-size: 70px;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        .form-group {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            font-weight: bold;
+            margin-right: 10px;
+            font-size: 20px;
+        }
+
+        #amount {
+            width: 20%;
+            padding: 10px;
+            border: 3px solid #ccc;
+            border-radius: 5px;
+            background-color: #fbfbfb;
+        }
+
+        .view-details-btn {
+            padding: 10px;
+            background-color: #4068c6;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            margin-left: 10px;
+            height: 43px;
+        }
+
+        .view-details-btn:hover {
+            background-color: #5c94de;
+        }
+
+        /* Payment options layout */
+        .payment-options {
+            display: flex;
+            justify-content: center; /* Center align payment options */
+            margin-bottom: 20px;
+        }
+
+        .payment-option {
+            width: 22.5%; /* Adjust width for space */
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            display: flex;
+            align-items: center;
+            margin: 0 1%; /* Space between options */
+        }
+
+        .payment-option img {
+            width: 100px;
+            margin-right: 10px;
+        }
+
+        .payment-btn {
+            width: 50%; /* Adjustable length */
+            padding: 15px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .payment-btn:hover {
+            background-color: #45a049;
+        }
+
+        .back-btn {
+            position: fixed; /* Position relative to container */
+            bottom: 20px; /* Distance from top */
+            left: 20px; /* Distance from left */
+            padding: 10px;
+            background-color: lightgray;
+            color: black;
+            border: none;
+            border-radius: 15px;
+            cursor: pointer;
+        }
+
+        .back-btn:hover {
+            background-color: gray;
+        }
+    </style>
+
+</body>
+</html>

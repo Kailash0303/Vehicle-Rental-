@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Confirmation</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: white;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        /* Outer container with border */
+        .container {
+            width: 97.9%;
+            border: 2px solid black;
+            padding: 11px;
+        }
+
+        /* Header with logo */
+        .header {
+            display: flex;
+            align-items: center;
+        }
+
+        .header img {
+            width: 350px;
+            margin-top: 5px;
+            margin-bottom: 3px; 
+        }
+
+        h1 {
+            font-family: 'Quattrocento', serif;
+            color: #7f7d7d;
+            font-size: 3rem;
+            align-self: center;
+        }
+
+        /* Center "Thank You" text and icon */
+        .thank-you {
+            display: flex;
+            align-items: center; /* Align items vertically */
+            justify-content: center; /* Center the entire section */
+            margin-bottom: 20px;
+        }
+
+        .thank-you-text {
+            text-align: center; /* Center text within its div */
+            margin-right: 20px; /* Add space between text and image */
+        }
+
+        .thank-you h2 {
+            font-family: 'Quattrocento', serif;
+            color: #83a7fb;
+            font-size: 70px;
+            margin: 0; /* Remove margin */
+            padding-left: 50px;
+        }
+
+        .booking-success {
+            color: #133da1; /* Text color as specified */
+            font-size: 30px; /* Font size for the message */
+            font-weight: bold; /* Make the text bold */
+            margin-bottom: 80px;
+            padding-left: 80px;
+        }
+
+        /* Thank you icon */
+        .thank-you img {
+            width: 70px;
+            margin-bottom: 150px;
+            padding-right: 15px;
+        }
+
+        /* Box around the form fields */
+        .form-container {
+            border: 3px solid #ccc;
+            padding: 0px;
+            border-radius: 20px; /* Optional: rounded corners */
+            margin: 20px auto; /* Center the form box */
+            width: 50%; /* Adjust the width as needed */
+            margin-top: -60px;
+        }
+
+        /* Reduce the width of the form fields and move them to the middle */
+        .form-group {
+            margin-bottom: 15px;
+            width: 90%;
+            margin: 0 auto;
+        }
+
+        .form-group input {
+            border: none;
+            border-bottom: 2px solid #ccc;
+            width: 100%;
+            padding: 20px 0;
+            margin: 0;
+            outline: none;
+            font-size: 16px;
+            text-align: left;
+        }
+
+        .form-group input:focus {
+            border-bottom: 2px solid #4CAF50;
+        }
+
+        /* Form row for "From" and "To" fields */
+        .form-row {
+            display: flex;
+            justify-content: space-evenly;
+            width: 90%;
+            margin: 0 auto;
+        }
+
+        .form-row .form-group {
+            width: 48%;
+        }
+
+        /* Center and style the confirm button */
+        .confirm-btn {
+            width: 70%;
+            padding: 15px;
+            background-color: #4CAF50;
+            color: white;
+            font-size: 20px;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            text-align: center;
+            align-self: center;
+            margin: 20px auto;
+            margin-left: 110px;
+        }
+
+        .confirm-btn:hover {
+            background-color: #329337;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <!-- Header section with logo -->
+        <div class="header">
+            <img src="/images/dr.png" alt="Drivee logo"> <!-- Replace with your logo URL -->
+        </div>
+
+        <!-- Thank you section -->
+        <div class="thank-you">
+            <div class="thank-you-text">
+                <h2>Thank You</h2>
+                <p class="booking-success">Your Booking is Successful!!</p>
+            </div>
+            <img src="/images/d1.png" alt="Check mark">
+        </div>
+
+        <!-- Box around all form fields -->
+        <div class="form-container">
+            <!-- Form fields -->
+            <form>
+                <div class="form-group">
+                    <input type="text" id="name" value="Name" readonly>
+                </div>
+
+                <div class="form-group">
+                    <input type="text" id="customer-id" value="Customer Id" readonly>
+                </div>
+
+                <!-- From and To fields side by side -->
+                <div class="form-row">
+                    <div class="form-group">
+                        <input type="text" id="from" value="From" readonly>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" id="to" value="To" readonly>
+                    </div>
+                </div>
+
+                <!-- Pickup and Drop Date fields -->
+                <div class="form-row">
+                    <div class="form-group">
+                        <input type="text" id="pickup-date" value="Pickup - Date" readonly>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" id="drop-date" value="Drop - Date" readonly>
+                    </div>
+                </div>
+
+                <!-- Confirm button with redirection -->
+                <button type="button" class="confirm-btn" onclick="redirectToPage()">Confirm</button>
+            </form>
+        </div> <!-- End of form-container -->
+    </div>
+
+    <script>
+        function redirectToPage() {
+            window.location.href = "index.html"; // Open a1.html in the same tab
+        }
+    </script>
+
+</body>
+</html>

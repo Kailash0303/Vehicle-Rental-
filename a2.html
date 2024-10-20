@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;  /* Prevent scrolling */
+        }
+
+        .signup-container {
+            width: 97.4%;
+            margin: 3px;
+            padding: 14.8px;
+            background-color: white;
+            border-radius: 1px;
+            border: 2px solid black; /* Border effect */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        .header img {
+            width: 350px; /* Adjust size of Drivee logo */
+            transform: translate(-573px, 12px); /* Reposition the logo */
+        }
+
+        h2 {
+            color: #83a7fb;
+            font-size: 60px;
+            margin-bottom: 50px;
+            text-align: left; /* Move Sign Up text to the left */
+            padding-left: 290px; /* Adjust this value to shift it left more or less */
+        }
+
+        .form-row {
+            display: flex;
+            justify-content: flex-start; /* Align fields closer horizontally */
+            gap: 0px; /* Reduce space between fields */
+            margin-bottom: 25px; /* Space between rows */
+            padding-left: 250px; /* Adjust left padding */
+        }
+
+        .form-group {
+            width: 43%; /* Width of form fields */
+            margin: 0; /* Remove extra margin between form groups */
+        }
+
+        .form-group input {
+            width: 80%; /* Input field width */
+            padding: 15px;
+            font-size: 16px;
+            border: 1px solid #dedede;
+            border-radius: 5px;
+        }
+
+        .form-group input:focus {
+            border-color: #045d07;
+        }
+
+        /* Styling for the dropdown integrated within the input field */
+        .id-proof-container {
+            position: relative;
+            width: 43%;
+        }
+
+        #id-proof-input {
+            width: 80%;
+            padding: 15px;
+            font-size: 16px;
+            border: 1px solid #dedede;
+            border-radius: 5px;
+        }
+
+        #id-proof-dropdown {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            width: 80%;
+            display: none;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            background-color: white;
+            z-index: 10;
+        }
+
+        #id-proof-dropdown option {
+            padding: 10px;
+            cursor: pointer;
+        }
+
+        #id-proof-dropdown option:hover {
+            background-color: #f0f0f0;
+        }
+
+        .signup-btn {
+            width: 30%; /* Adjust size of the signup button */
+            padding: 15px;
+            background-color: #4CAF50;
+            color: white;
+            font-size: 18px;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            margin: 20px auto 0;
+            display: block;
+            align-self: center;
+        }
+
+        .signup-btn:hover {
+            background-color: #17841c;
+        }
+
+        .social-login {
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        .social-login p {
+            margin-bottom: 10px;
+            font-size: 18px;
+        }
+
+        .social-icon {
+            margin: 0 5px;
+            cursor: pointer;
+        }
+
+        .google-icon {
+            width: 30px;
+        }
+
+        .facebook-icon {
+            width: 35px;
+        }
+
+        .instagram-icon {
+            width: 36px;
+        }
+
+        .social-icon:hover {
+            opacity: 0.8;
+        }
+    </style>
+</head>
+<body>
+    <div class="signup-container">
+        <div class="header">
+            <img src="/images/dr.png" alt="Drivee Logo">
+        </div>
+
+        <h2>Sign Up</h2>
+
+        <form onsubmit="redirectToPage1(event)">
+            <!-- Name and Phone Number -->
+            <div class="form-row">
+                <div class="form-group">
+                    <input type="text" id="name" placeholder="Name" required>
+                </div>
+
+                <div class="form-group">
+                    <input type="tel" id="phone" placeholder="Phone Number" required>
+                </div>
+            </div>
+
+            <!-- Email ID and Address -->
+            <div class="form-row">
+                <div class="form-group">
+                    <input type="email" id="email" placeholder="Email ID" required>
+                </div>
+
+                <div class="form-group">
+                    <input type="text" id="address" placeholder="Address" required>
+                </div>
+            </div>
+
+            <!-- Driving License and ID Proof -->
+            <div class="form-row">
+                <div class="form-group">
+                    <input type="text" id="driving-license" placeholder="Driving License No." required>
+                </div>
+
+                <div class="form-group id-proof-container">
+                    <!-- Input field for ID proof -->
+                    <input type="text" id="id-proof-input" placeholder="Id-proof" readonly onclick="toggleDropdown()">
+                    
+                    <!-- Dropdown for ID proof options -->
+                    <select id="id-proof-dropdown" size="3" onclick="setIdProof()">
+                        <option value="Aadhaar Card">Aadhaar Card</option>
+                        <option value="Pan Card">Pan Card</option>
+                        <option value="Voting Card">Voting Card</option>
+                    </select>
+                </div>
+            </div>
+
+            <button type="submit" class="signup-btn">Sign Up</button>
+        </form>
+
+        <div class="social-login">
+            <p>Continue with</p>
+            <img src="/images/google.png" alt="Google" class="social-icon google-icon">
+            <img src="/images/face.png" alt="Facebook" class="social-icon facebook-icon">
+            <img src="/images/insta.png" alt="Instagram" class="social-icon instagram-icon">
+        </div>
+    </div>
+
+    <script>
+        // Function to toggle the ID proof dropdown visibility
+        function toggleDropdown() {
+            const dropdown = document.getElementById('id-proof-dropdown');
+            dropdown.style.display = dropdown.style.display === 'block' ? 'none' : 'block';
+        }
+
+        // Function to set the ID proof field value from the dropdown
+        function setIdProof() {
+            const dropdown = document.getElementById('id-proof-dropdown');
+            const input = document.getElementById('id-proof-input');
+            input.value = dropdown.value; // Set the selected value in the input field
+            dropdown.style.display = 'none'; // Hide the dropdown after selection
+        }
+
+        // Function to handle form submission and open page1.html in the same tab
+        function redirectToPage1(event) {
+            event.preventDefault(); // Prevent the form from submitting in the default way
+            window.location.href = 'index.html'; // Open page1.html in the same tab
+        }
+    </script>
+</body>
+</html>

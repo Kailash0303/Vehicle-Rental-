@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Select Vehicle</title>
+    <link rel="stylesheet" href="page3.css"> <!-- Link to the external CSS file -->
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f0f0f0;
+        }
+
+        /* Container for the entire content */
+        .container {
+            background-color: white;
+            border: 2px solid #000; /* Outer border */
+            padding: 20px;
+            width: 99.5%;
+            text-align: center;
+            box-shadow: 3px 3px 15px rgba(0, 0, 0, 0.15);
+            margin-top: 50px;
+            margin-bottom: 50px;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        /* Styling for the image logo */
+        .logo {
+            width: 350px; /* Adjust logo size */
+            height: auto;
+            align-self: left;
+            margin-top: 10px;
+            margin-bottom: 10px;
+        }
+
+        .login-btn {
+            background-color: #e0e0e0;
+            border: none;
+            padding: 15px 20px;
+            border-radius: 20px;
+            cursor: pointer;
+            margin-top: -50px;
+            margin-right: 30px;
+            font-weight: bold;
+        }
+
+        .login-btn:hover {
+            background-color: rgb(182, 182, 182);
+        }
+
+        h2 {
+            color: #133da1;
+            margin-top: 50px;
+            font-size: 40px;
+            margin-bottom: 90px;
+        }
+
+        /* Input container styling for box effect */
+        .input-container {
+            padding: 20px;
+            background-color: rgb(240, 240, 239);
+            border: 1px solid #acacac; /* Outer border for the input container */
+            border-radius: 8px;
+            margin-bottom: 20px;
+            margin-left: 150px;
+            margin-right: 150px;
+        }
+
+        /* Adjusted form row for inputs */
+        .form-row {
+            display: flex;
+            justify-content: space-between;
+            margin: -10px;
+        }
+
+        .form-group {
+            width: 19%;
+            margin: 2px;
+        }
+
+        /* Input field styles */
+        .form-group input[type="text"],
+        .form-group input[type="date"],
+        .form-group select {
+            width: 90%; /* Full width of the form-group */
+            padding: 8px;
+            font-size: 15px;
+            border: none; /* Remove border */
+            border-bottom: 2px solid #acacac; /* Underline effect */
+            outline: none; /* Remove outline */
+            background-color: transparent; /* Make background transparent */
+        }
+
+        .form-group input::placeholder,
+        .form-group select {
+            color: #090d17;
+            font-weight: bold;
+        }
+
+        /* Change border color on focus */
+        .form-group input:focus,
+        .form-group select:focus {
+            border-bottom: 2px solid #0e064d; /* Change underline color on focus */
+        }
+
+        /* Vehicle options styling */
+        .vehicle-options {
+            display: flex;
+            justify-content: space-evenly;
+        }
+
+        .vehicle {
+            text-align: center;
+        }
+
+        .vehicle-options button {
+            background-color: transparent;
+            border: none;
+            cursor: pointer;
+        }
+
+        .vehicle-options img {
+            width: 250px;
+            height: 250px;
+            border-radius: 10px;
+            transition: transform 0.2s ease;
+            margin-top: -60px;
+        }
+
+        .vehicle-options img:hover {
+            transform: scale(1.1);
+        }
+
+        .vehicle-label {
+            font-size: 40px;
+            font-weight: bold;
+            color: #333;
+            margin-top: 5px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <header>
+            <img src="/images/dr.png" alt="Drive Logo" class="logo"> <!-- Add your drive image here -->
+            <button class="login-btn" onclick="openLoginPage()">Login</button>
+        </header>
+        
+        <!-- Input fields wrapped in a container -->
+        <div class="input-container">
+            <div class="form-row">
+                <!-- From Dropdown -->
+                <div class="form-group">
+                    <select id="from" name="from" required>
+                        <option value="" disabled selected>From</option>
+                        <option value="Delhi">Delhi</option>
+                        <option value="Mumbai">Mumbai</option>
+                        <option value="Bengaluru">Bengaluru</option>
+                        <option value="Chennai">Chennai</option>
+                        <option value="Kolkata">Kolkata</option>
+                        <option value="Hyderabad">Hyderabad</option>
+                        <option value="Pune">Pune</option>
+                        <option value="Jaipur">Jaipur</option>
+                        <option value="Ahmedabad">Ahmedabad</option>
+                    </select>
+                </div>
+
+                <!-- To Dropdown -->
+                <div class="form-group">
+                    <select id="to" name="to" required>
+                        <option value="" disabled selected>To</option>
+                        <option value="Delhi">Delhi</option>
+                        <option value="Mumbai">Mumbai</option>
+                        <option value="Bengaluru">Bengaluru</option>
+                        <option value="Chennai">Chennai</option>
+                        <option value="Kolkata">Kolkata</option>
+                        <option value="Hyderabad">Hyderabad</option>
+                        <option value="Pune">Pune</option>
+                        <option value="Jaipur">Jaipur</option>
+                        <option value="Ahmedabad">Ahmedabad</option>
+                    </select>
+                </div>
+
+                <!-- Pickup Date -->
+                <div class="form-group">
+                    <input type="text" id="pickup-date" placeholder="Pickup Date" required>
+                </div>
+
+                <!-- Pickup Time Dropdown -->
+                <div class="form-group">
+                    <select id="pickup-time" required>
+                        <option value="" disabled selected>Pickup Time</option>
+                        <option value="Morning">Morning</option>
+                        <option value="Noon">Noon</option>
+                        <option value="Evening">Evening</option>
+                    </select>
+                </div>
+
+                <!-- Drop Date -->
+                <div class="form-group">
+                    <input type="text" id="drop-date" placeholder="Drop Date" required>
+                </div>
+            </div>
+        </div>
+
+        <h2>Select Your Vehicle</h2>
+
+        <!-- Vehicle options: Car, Bike, Bicycle with images -->
+        <div class="vehicle-options">
+            <div class="vehicle">
+                <button type="button" onclick="openVehiclePage('car.html')">
+                    <img src="/images/car.png" alt="Car">
+                </button>
+                <div class="vehicle-label">Car</div>
+            </div>
+            <div class="vehicle">
+                <button type="button" onclick="openVehiclePage('bike.html')">
+                    <img src="/images/bike.png" alt="Bike">
+                </button>
+                <div class="vehicle-label">Bike</div>
+            </div>
+            <div class="vehicle">
+                <button type="button" onclick="openVehiclePage('bicycle.html')">
+                    <img src="/images/b3.png" alt="Bicycle">
+                </button>
+                <div class="vehicle-label">Bicycle</div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Open login page in the same tab
+        function openLoginPage() {
+            window.location.href = 'a2.html'; // Opens in the same tab
+        }
+
+        // Open vehicle page in the same tab
+        function openVehiclePage(page) {
+            window.location.href = 'a4.html'; // Opens the selected vehicle page in the same tab
+        }
+    </script>
+
+</body>
+</html>
